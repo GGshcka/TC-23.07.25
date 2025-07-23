@@ -46,6 +46,7 @@ func NewServer(message string, port int, readTimeoutInSec int, writeTimeoutInSec
 
 func (sd ServerData) StartServer() {
 	fmt.Println("Starting server at port " + strconv.Itoa(sd.Port))
+	fmt.Println("Link to http://localhost:" + strconv.Itoa(sd.Port))
 	err := sd.ClearFolder("downloaded/")
 	if err != nil {
 		fmt.Println("Error removing the folder:", err)

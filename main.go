@@ -32,7 +32,7 @@ func main() {
 
 	config, err = NewConfigReader()
 	if err != nil {
-		fmt.Println("Ошибка при чтении конфигурации:", err)
+		fmt.Println("Error reading configuration file:", err)
 		return
 	}
 

@@ -26,7 +26,7 @@ type FileExtension struct {
 func NewConfigReader() (Data, error) {
 	f, err := os.Open("config.xml")
 	if err != nil {
-		fmt.Println("Ошибка открытия файла:", err)
+		fmt.Println("Error file opening:", err)
 		return Data{}, err
 	}
 	defer f.Close()
@@ -36,7 +36,7 @@ func NewConfigReader() (Data, error) {
 
 	err = decoder.Decode(&data)
 	if err != nil {
-		fmt.Println("Ошибка разбора XML:", err)
+		fmt.Println("Error while decoding XML:", err)
 		return Data{}, err
 	}
 	return data, nil
