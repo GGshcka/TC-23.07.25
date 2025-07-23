@@ -1,0 +1,7 @@
+<data>
+    <port value="8080"/>
+    <fileExtensions>
+        <extension value=".jpg"/>
+        <extension value=".pdf"/>
+    </fileExtensions>
+</data>

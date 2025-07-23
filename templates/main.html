@@ -1,0 +1,134 @@
+<!-- templates/main.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Downloader ^^</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            border-radius: 4px;
+            font-family: Cantarell;
+        }
+        body {
+            margin: 0;
+        }
+        .header {
+            overflow: hidden;
+            background-color: #f1f1f1;
+            padding: 10px 5px;
+            border-color: black;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+        }
+        .header a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 25px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+        .header a.logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+        .header a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .header button.active {
+            background-color: darkred;
+            color: white;
+            margin: 3px 0 3px 3px;
+            border-radius: 4px 0 0 4px;
+            border-width: 1px 0 1px 1px;
+            border-color: black;
+            border-style: solid;
+            width: 50px;
+            height: 50px;
+        }
+        .header button.download {
+            background-color: green;
+            color: white;
+            margin: 3px 3px 3px -4px;
+            border-radius: 0 4px 4px 0;
+            border-width: 1px 1px 1px 0;
+            border-color: black;
+            border-style: solid;
+            width: 50px;
+            height: 50px;
+        }
+        .header button.inactive {
+            background-color: dimgray;
+            color: white;
+            width: 50px;
+            height: 50px;
+        }
+        .header-right {
+            float: right;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: 15% 25%;
+            padding: 0;
+            box-sizing: border-box;
+            justify-content: center;
+        }
+        input {
+            flex: 1;
+            box-sizing: border-box;
+            margin: 3px;
+            padding: 15px 5px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 15px;
+        }
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<form method="POST">
+    <div class="header">
+        <a href="/" class="logo">Downloader</a>
+        <div class="header-right">
+            <p>Queue: </p>
+            {{ if ne .Items  nil }}
+            {{ if ne (index .Items 0) "" }}
+            <button name="action" class="active" type="submit" value="clearFirst"><i class="fa-solid fa-trash"></i></button>
+            <button name="action" class="download" type="submit" value="downloadFirst"><i class="fa-solid fa-download"></i></button>
+            {{ else }}
+            <button name="action" disabled="disabled" class="inactive" type="submit" value="clearFirst">1</button>
+            {{ end }}
+            {{ if ne (index .Items 1) "" }}
+            <button name="action" class="active" type="submit" value="clearSecond"><i class="fa-solid fa-trash"></i></button>
+            <button name="action" class="download" type="submit" value="downloadSecond"><i class="fa-solid fa-download"></i></button>
+            {{ else }}
+            <button name="action" disabled="disabled" class="inactive" type="submit" value="clearSecond">2</button>
+            {{ end }}
+            {{ if ne (index .Items 2) "" }}
+            <button name="action" class="active" type="submit" value="clearThird"><i class="fa-solid fa-trash"></i></button>
+            <button name="action" class="download" type="submit" value="downloadThird"><i class="fa-solid fa-download"></i></button>
+            {{ else }}
+            <button name="action" disabled="disabled" class="inactive" type="submit" value="clearThird">3</button>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+    <div class="container">
+        <input type="text" name="linkInput" placeholder="Link to file">
+        <p>{{ .Message }}</p>
+        <button name="action" type="submit" value="upload">Submit</button>
+    </div>
+</form>
+</body>
+</html>
